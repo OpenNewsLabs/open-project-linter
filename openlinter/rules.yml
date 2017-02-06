@@ -1,0 +1,7 @@
+# Config file for linter rules
+
+# Documentation present
+files_exist:
+- license
+- readme
+- contributing
