@@ -1,7 +1,23 @@
 # Config file for linter rules
+# Comment out what you don't want to run
 
 # Documentation present
 files_exist:
-- license
-- readme
-- contributing
+# type of file: string to match on
+- license: LICENSE
+- readme: README
+- contributing: CONTRIBUTING
+
+# Version control exists and should be checked
+version_control:
+- detect_vcs
+- detect_git_branches
+- multiple_git_commits
+- gpg_signed_commits
+
+github_features:
+- milestones
+
+misc:
+- code sanitization
+- offensive language
