@@ -13,6 +13,7 @@ import yaml
 
 import rules
 
+# FIXME: this is all terribly procedural and not very functional or testable.
 def main():
     # Set up parser and CLI
     parser = argparse.ArgumentParser()
@@ -29,12 +30,31 @@ def main():
     args = parser.parse_args()
 
     # Read in rules
-    # parse the YAML to call them probably
+    with open(args.rules, 'r') as f:
+        text = f.read()
+
+    rule_set = yaml.safe_load(text)
 
     # Check directory/repository against rules
-    # This should return some sort of pass/fail + message result
+    if 'files_exist' in rule_set:
+        """
+        # TODO: Consider architecture: how to handle the result (print to stdout
+        #       as we go, or pass around a result object?), how to handle interface
+        #       strings (hard-coded or able to change/localize easily).
+        """
+        # FIXME: also unfortunately nested
+        for f in rule_set['files_exist']:
+            for item in f:
+                 result = rules.check_file_presence(f[item], args.directory)
+                 if result:
+                     output = '  {} exists and has content.'
+                 elif result is None:
+                     output = '! {} exists but is empty.'
+                 else:
+                     output = '! {} not found in {}.'
 
-    # Print results to stdout
+                 # print result to stdout
+                 print(output.format(f[item], args.directory))
 
 
 if __name__ == '__main__':
