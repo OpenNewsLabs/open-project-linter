@@ -16,18 +16,17 @@ import rules
 def main():
     # Set up parser and CLI
     parser = argparse.ArgumentParser()
-    # TODO: make these mutually exclusive
-    parser.add_argument('--url',
-        help='The URL to the GitHub repository to check. Defaults to none.')
-    parser.add_argument('--dir', help="The local path to your repository's base directory. Defaults to the current working directory.",
-       # default=TODO, you can get this with os
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-u', '--url',
+        help='The URL to the GitHub repository to check. Defaults to None.')
+    group.add_argument('-d', '--directory', help="The local path to your repository's base directory. Defaults to the current working directory.",
+       default=os.getcwd()
     )
-    parser.add_argument('--rules', help='The path to the rules config file, a YAML(???tktk) file containing the rules you would like to check for. Defaults to tktkTODO',
-        # default=TODO (cwd/rules.yml for now)
+    parser.add_argument('-r', '--rules', help='The path to the rules configuration file, a YAML file containing the rules you would like to check for. Defaults to current-working-directory/openlinter/rules.yml.',
+        default=os.path.join(os.getcwd(), 'openlinter/rules.yml')
     )
-    parser.parse_args()
-
-    # Identify directory/repository
+    parser.add_argument('--version', action='version', version='0.1dev')
+    args = parser.parse_args()
 
     # Read in rules
     # parse the YAML to call them probably
