@@ -65,11 +65,11 @@ def main():
         print(output)
 
     if 'detect_git_branches' in rule_set['version_control'] and vcs == 'git':
-        branches = check_for_git_branches(args.directory)
-        develop = check_for_develop_branch(args.directory, 'develop')
+        branches = rules.check_multiple_branches(args.directory)
+        develop = rules.check_for_develop_branch(args.directory, 'develop')
 
     # TODO: make this the same as other feedback
-    print('branches: {}, develop: {}'.format(branches, develop))
+        print('branches: {}, develop: {}'.format(branches, develop))
 
 
     elif 'detect_git_branches' in rule_set['version_control']:
