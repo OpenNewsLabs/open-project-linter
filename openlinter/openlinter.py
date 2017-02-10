@@ -47,11 +47,11 @@ def main():
             for item in f:
                  result = rules.check_file_presence(f[item], args.directory)
                  if result:
-                     output = '  {} exists and has content.'
+                     output = '  {} exists and has content'
                  elif result is None:
-                     output = '! {} exists but is empty.'
+                     output = '! {} exists but is empty'
                  else:
-                     output = '! {} not found in {}.'
+                     output = '! {} not found in {}'
 
                  # print result to stdout
                  print(output.format(f[item], args.directory))
