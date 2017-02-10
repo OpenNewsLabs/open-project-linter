@@ -56,6 +56,29 @@ def main():
                  # print result to stdout
                  print(output.format(f[item], args.directory))
 
+    if 'version_control' in rule_set:
+        vcs = rules.detect_version_control(args.directory)
+        if vcs:
+            output = '  version control using {}'.format(vcs)
+        else:
+            output = '! version control system not detected'
+        print(output)
+
+    if 'detect_git_branches' in rule_set['version_control'] and vcs == 'git':
+        branches = check_for_git_branches(args.directory)
+        develop = check_for_develop_branch(args.directory, 'develop')
+
+    # TODO: make this the same as other feedback
+    print('branches: {}, develop: {}'.format(branches, develop))
+
+
+    elif 'detect_git_branches' in rule_set['version_control']:
+        print('! no git repository detected, could not check for git branches')
+    else:
+        pass
+
+    # TODO: can add future checks, also needs refactoring
+
 
 if __name__ == '__main__':
     main()
