@@ -17,7 +17,7 @@ import git
 def check_file_presence(keyword, directory):
     """
     Checks whether a given directory contains a file whose name contains
-    a given string, using case insensitive matching.
+    a given string.
 
     Parameters
     ----------
@@ -40,7 +40,7 @@ def check_file_presence(keyword, directory):
             # in case there's anything in the path that matches keyword,
             # only match the filename
             filename = os.path.split(f)[1]
-            if keyword.casefold() in filename.casefold():
+            if keyword in filename:
                 if check_for_file_content(os.path.join(directory,f)):
                     return True
                 else:
