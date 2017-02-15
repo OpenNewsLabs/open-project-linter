@@ -43,18 +43,26 @@ def main():
         #       strings (hard-coded or able to change/localize easily).
         """
         # FIXME: also unfortunately nested
-        for f in rule_set['files_exist']:
-            for item in f:
-                 result = rules.check_file_presence(f[item], args.directory)
-                 if result:
-                     output = '  {} exists and has content'
-                 elif result is None:
-                     output = '! {} exists but is empty'
-                 else:
-                     output = '! {} not found in {}'
-
-                 # print result to stdout
-                 print(output.format(f[item], args.directory))
+        for files_to_check in rule_set['files_exist']:
+            for f in files_to_check:
+                for name in files_to_check[f]:
+                    result = rules.check_file_presence(name, args.directory)
+                    # If one exists with content, great, stop checking
+                    if result:
+                        output = '  {} exists and has content'.format(name)
+                        print(output)
+                        break
+                    # Otherwise note that none of the names exist?
+                    # TODO: could wrangle this a bit
+                    # brainwane/sumanah: should this say "no $name type file found"
+                    #                    or list the individual ones not present?
+                    elif result is None:
+                        output = '! {} exists but is empty'.format(name,
+                            args.directory)
+                        print(output)
+                    else:
+                        output = '! {} not found in {}'.format(name, args.directory)
+                        print(output)
 
     if 'version_control' in rule_set:
         vcs = rules.detect_version_control(args.directory)

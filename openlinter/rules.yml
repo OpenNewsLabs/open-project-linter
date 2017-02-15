@@ -4,9 +4,9 @@
 # Documentation present
 files_exist:
 # type of file: string to match on
-- license: LICENSE
-- readme: README
-- contributing: CONTRIBUTING
+- license: [LICENSE, COPYING]
+- readme: [README]
+- contributing: [CONTRIBUTING]
 
 # Version control exists and should be checked
 version_control:
