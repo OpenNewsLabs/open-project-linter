@@ -5,14 +5,13 @@ open source project has the documentation and structure it needs to be
 successful, and that it doesn't contain any information it shouldn't.
 
 ## How to get involved
-Currently, @fhocutt and @brainwane are writing a roadmap and figuring out
-the project organization/direction. As work goes on, this will be updated.
+To start with, this project is being implemented by Frances Hocutt (@fhocutt)
+and Sumana Hariharewsara (@brainwane, [Changeset Consulting](https://changeset.nyc)),
+under contract. If you want to volunteer to contribute, take a look at the
+[project roadmap](https://github.com/OpenNewsLabs/open-project-linter/blob/master/ROADMAP.md)
+and the [project issue tracker](https://github.com/OpenNewsLabs/open-project-linter/issues)
+and then comment on an issue you're interested in. Or, ping @brainwane for more
+information.
 
 ## Status and plans
-We will start small and add features as development goes on.
-
-To start with: a minimum viable command-line application, which will check a
-local repository of unversioned code for certain key files. This will be
-extended to check for local git repositories and analyze the repository history
-and structure, and from there to checking repositories located at a given
-GitHub URL.
+See `ROADMAP.md` for more information.
