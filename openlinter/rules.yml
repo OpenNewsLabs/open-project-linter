@@ -15,8 +15,10 @@ version_control:
 - multiple_git_commits
 - gpg_signed_commits
 
-github_features:
-- milestones
+#FIXME: figure out what to do about this bit
+dev_branch_names:
+- develop
+- feature
 
 misc:
 - code sanitization

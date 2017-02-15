@@ -74,14 +74,27 @@ def main():
 
     if 'detect_git_branches' in rule_set['version_control'] and vcs == 'git':
         branches = rules.check_multiple_branches(args.directory)
-        develop = rules.check_for_develop_branch(args.directory, 'develop')
+        if branches:
+            output = '  multiple git branches found'
+        else:
+            output = '! fewer than 2 git branches found'
+        print(output)
 
-    # TODO: make this the same as other feedback
-        print('branches: {}, develop: {}'.format(branches, develop))
-
+        # check for a dev/feature branch
+        # TODO: pull some of this out into a function
+        develop = False
+        for name in rule_set['dev_branch_names']:
+            if rules.check_for_develop_branch(args.directory, name):
+                develop = True
+                output = '  development branch "{}" found'.format(name)
+                print(output)
+        if not develop:
+            output = '! no development branch found'
+            print(output)
 
     elif 'detect_git_branches' in rule_set['version_control']:
         print('! no git repository detected, could not check for git branches')
+
     else:
         pass
 
