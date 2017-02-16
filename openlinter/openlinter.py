@@ -72,6 +72,7 @@ def main():
             output = '! version control system not detected'
         print(output)
 
+    # Conditionals may need work here, TODO
     if 'detect_git_branches' in rule_set['version_control'] and vcs == 'git':
         branches = rules.check_multiple_branches(args.directory)
         if branches:
@@ -91,6 +92,15 @@ def main():
         if not develop:
             output = '! no development branch found'
             print(output)
+
+    # Conditionals may need work here, TODO
+    if 'multiple_git_commits' in rule_set['version_control'] and vcs == 'git':
+        multiple_commits = rules.check_for_multiple_commits(args.directory)
+        if multiple_commits:
+            output = '  multiple commits on a branch found'
+        else:
+            output = '! one or fewer commits on each branch'
+        print(output)
 
     elif 'detect_git_branches' in rule_set['version_control']:
         print('! no git repository detected, could not check for git branches')

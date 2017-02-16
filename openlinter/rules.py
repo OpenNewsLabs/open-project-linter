@@ -90,12 +90,16 @@ def check_for_develop_branch(repository, dev_branch_name):
     return True
 
 
-# TODO: figure out Head API, flesh this out
 def check_for_multiple_commits(repository):
+    """ Return True if any branch has more than 2 commits ( in git log)"""
     repo = git.Repo(repository)
-    branches = Repo.branches
+    branches = repo.branches
+    multiple_commits = False
     for branch in branches:
-        pass
+        commit_log = [x for x in branch.log() if 'commit' in x.message]
+        if len(commit_log) > 1:
+            multiple_commits = True
+    return multiple_commits
 
 # TODO: figure out how to do this, flesh this out
 def check_for_signed_commits(repository):
