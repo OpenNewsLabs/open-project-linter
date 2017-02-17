@@ -7,13 +7,15 @@ Early implementation for an open source project linter.
 See https://github.com/OpenNewsLabs/open-project-linter/issues/21 .
 """
 
+from __future__ import absolute_import
+
 import argparse
 import os
 import yaml
 
-import rules
+import openlinter.rules as rules
 
-# FIXME: this is all terribly procedural and not very functional or testable.
+# FIXME: this is all not very functional or testable.
 def main():
     # Set up parser and CLI
     parser = argparse.ArgumentParser()
