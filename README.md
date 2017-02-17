@@ -19,6 +19,11 @@ Then you can use pip to install Open Project Linter.
 ```
 $ pip install open-project-linter
 ```
+*NOTE:* until the first release, you will need to use the `--pre` flag when installing:
+```
+$ pip install --pre open-project-linter
+```
+
 Once you have installed the package, you should be able to run it from the
 command line (see [Example usage](#Example usage)).
 
