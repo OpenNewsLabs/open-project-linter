@@ -15,13 +15,13 @@ version_control:
 - detect_vcs
 - detect_git_branches
 - multiple_git_commits
-- gpg_signed_commits
+#- gpg_signed_commits
 
-#FIXME: figure out what to do about this bit
+# Acceptable names for a development branch
 dev_branch_names:
 - develop
 - feature
 
-misc:
-- code sanitization
-- offensive language
+#misc:
+#- code sanitization
+#- offensive language
