@@ -33,6 +33,6 @@ setup(
     ],
     keywords='project linter setup documentation development',
     entry_points={
-        'console_scripts': ['openlinter=openlinter:main']
+        'console_scripts': ['openlinter=openlinter.openlinter:main']
     }
 )

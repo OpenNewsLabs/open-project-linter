@@ -1,5 +1,6 @@
-pytest==3.0.6
 GitPython==2.1.1
+Pygments==2.2.0
+pytest==3.0.6
 PyYAML==3.12
 gitdb2==2.0.0
 smmap2==2.0.1
