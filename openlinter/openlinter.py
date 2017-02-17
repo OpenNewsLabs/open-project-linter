@@ -59,10 +59,17 @@ def main():
                     elif result is None:
                         output = '! {} exists but is empty'.format(name,
                             args.directory)
-                        print(output)
                     else:
                         output = '! {} not found in {}'.format(name, args.directory)
-                        print(output)
+                    print(output)
+
+    if 'code_exists' in rule_set:
+        code_exists = rules.check_for_code(args.directory)
+        if code_exists:
+            output = '  code files detected'
+        else:
+            output = '! no code files found'
+        print(output)
 
     if 'version_control' in rule_set:
         vcs = rules.detect_version_control(args.directory)

@@ -8,6 +8,8 @@ files_exist:
 - readme: [README]
 - contributing: [CONTRIBUTING]
 
+code_exists: True
+
 # Version control exists and should be checked
 version_control:
 - detect_vcs

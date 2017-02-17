@@ -10,9 +10,12 @@ See https://github.com/OpenNewsLabs/open-project-linter/issues/21 .
 import os
 
 import git
+import pygments.lexers as lexers
 
-
-# TODO: consider errors/failure modes
+# Pygments lexer names that will parse files that are not code
+NOT_CODE = ['markdown','BBCode', 'Groff', 'MoinMoin/Trac Wiki markup',
+            'reStructuredText', 'TeX','Gettext Catalog', 'HTTP', 'IRC logs',
+            'Todotxt']
 
 def check_file_presence(keyword, directory):
     """
@@ -54,6 +57,37 @@ def check_for_file_content(filename):
     """Return True if the file has > 0 B, False otherwise."""
     # note this gives FileNotFoundError if there is no file at filepath
     return os.path.getsize(filename) > 0
+
+
+def check_for_code(directory):
+    """Return True if a code file is present (not just structured text)."""
+    code_present = False
+    for root, dirs, files in os.walk(directory):
+        for f in files:
+            code_present = guess_code_present(os.path.join(root, f))
+            if code_present:
+                return True
+    return False
+
+def guess_code_present(filepath):
+    text = get_file_text(filepath)
+    filename = os.path.split(filepath)[1]
+    try:
+        lexer = lexers.guess_lexer_for_filename(filename, text)
+        if lexer.name not in NOT_CODE:
+            return True
+        else:
+            return False
+    except lexers.ClassNotFound:
+        return False
+
+
+def get_file_text(filepath):
+    try:
+        with open(filepath, 'r') as f:
+            return f.read()
+    except UnicodeDecodeError:
+        return None
 
 
 def detect_version_control(directory):
@@ -100,6 +134,7 @@ def check_for_multiple_commits(repository):
         if len(commit_log) > 1:
             multiple_commits = True
     return multiple_commits
+
 
 # TODO: figure out how to do this, flesh this out
 def check_for_signed_commits(repository):
