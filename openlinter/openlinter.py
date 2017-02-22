@@ -28,7 +28,7 @@ def main():
     parser.add_argument('-r', '--rules', help='The path to the rules configuration file, a YAML file containing the rules you would like to check for. Defaults to current-working-directory/openlinter/rules.yml.',
         default=os.path.join(os.getcwd(), 'openlinter/rules.yml')
     )
-    parser.add_argument('-v', '--version', action='version', version='0.1dev')
+    parser.add_argument('-v', '--version', action='version', version='0.2dev')
     args = parser.parse_args()
 
     # Read in rules
