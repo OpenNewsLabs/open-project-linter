@@ -16,7 +16,7 @@ with(open(path.join(here, 'README.md'), encoding='utf-8')) as f:
 
 setup(
     name='open-project-linter',
-    version='0.1dev',
+    version='0.2dev',
     packages=find_packages(),
     install_requires=['gitpython', 'pyyaml'],
     license='Apache v2.0',

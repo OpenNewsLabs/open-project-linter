@@ -39,24 +39,20 @@ def check_file_presence(keyword, directory):
     files = os.listdir(directory)
     # this is unfortunately nested, FIXME?
     for f in files:
-        if os.path.isfile(f):
+        if os.path.isfile(os.path.join(directory, f)):
             # in case there's anything in the path that matches keyword,
             # only match the filename
             filename = os.path.split(f)[1]
             if keyword in filename:
-                if check_for_file_content(os.path.join(directory,f)):
-                    return True
-                else:
-                    return None
-
+                return True
     # if loop finishes, file name not found
     return False
 
 
-def check_for_file_content(filename):
+def check_for_file_content(filepath):
     """Return True if the file has > 0 B, False otherwise."""
     # note this gives FileNotFoundError if there is no file at filepath
-    return os.path.getsize(filename) > 0
+    return os.path.getsize(filepath) > 0
 
 
 def check_for_code(directory):

@@ -49,6 +49,10 @@ repository, file a pull request to get your contribution into the main
 repository.
 
 ##Changelog
+###version 0.2dev
+* Add automated tests
+* Fix path bug in file content checker
+
 ###version 0.1dev
 * Command-line application invokable with `openlinter`, with help on
   how to run it
