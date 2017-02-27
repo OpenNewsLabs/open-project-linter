@@ -58,6 +58,11 @@ repository, file a pull request to get your contribution into the main
 repository.
 
 ##Changelog
+###version 0.4dev
+* Now installs Pygments automatically when installed with pip, with or
+  without pulling versions from `requirements.txt`
+* Now includes `rules.yml` in the package and uses a correct default path
+  to it
 ###version 0.3dev
 * Improve documentation
 * Fix accidental return value change in file content checker
