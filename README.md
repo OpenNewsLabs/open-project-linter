@@ -87,12 +87,15 @@ repository.
       multiple commits on any branch, and a named development/feature branch
 * Configurable via `rules.yml`
 
-##Meta
-Mozilla Open News - https://www.opennews.org/
+##About
+This linter was designed and written by [Frances Hocutt](https://franceshocutt.com/cv/) via [Changeset Consulting](http://changeset.nyc/), a project management and maintainership consultancy focusing on open source. Sumana Harihareswara of Changeset Consulting attended the initial [OpenNews](https://opennews.org/) documentation sprint for [The Field Guide to Open Source in the Newsroom](http://fieldguide.opennews.org/) and suggested development of a companion tool to automate the guidebook's checklists as much as possible.
 
-Contributors:
-* Frances Hocutt - https://franceshocutt https://github.com/fhocutt/
+We look forward to seeing the community add new linter rules to help new maintainers.
+
+##Contributors
+* Frances Hocutt - https://franceshocutt.com https://github.com/fhocutt/
 * Sumana Harihareswara - https://changeset.nyc
 
+##License
 The Open Project Linter is available under v. 2.0 of the Apache license.
 See `LICENSE` for more information.
