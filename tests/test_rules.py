@@ -88,6 +88,10 @@ def test_check_multiple_branches_nonexistent_repo():
     with pytest.raises(git.InvalidGitRepositoryError):
         check_multiple_branches('tests/fixtures/pic-folder')
 
+def test_check_multiple_branches_nonexistent_repo():
+    with pytest.raises(git.NoSuchPathError):
+        check_multiple_branches('zzyzx')
+
 def test_check_multiple_branches_repo_with_one_branch():
     result = check_multiple_branches('tests/fixtures/git-repo-one-branch')
     assert result == False
@@ -102,6 +106,10 @@ def test_check_multiple_branches_repo_with_two_branches():
 def test_check_for_develop_branch_nonexistent_repo():
     with pytest.raises(git.NoSuchPathError):
         check_for_develop_branch('zzyzx', 'dev')
+
+def test_check_for_develop_branch_nonexistent_repo():
+    with pytest.raises(git.InvalidGitRepositoryError):
+        check_for_develop_branch('tests/fixtures/pic-folder', 'dev')
 
 def test_check_for_develop_branch_repo_without_dev_branch():
     result = check_for_develop_branch('tests/fixtures/test-git-repo', 'dev')
@@ -118,6 +126,10 @@ def test_check_for_develop_branch_repo_has_dev_branch():
 def test_check_for_multiple_commits_nonexistent_repo():
     with pytest.raises(git.NoSuchPathError):
         check_for_multiple_commits('zzyzx')
+
+def test_check_for_multiple_commits_nonexistent_repo():
+    with pytest.raises(git.InvalidGitRepositoryError):
+        check_for_multiple_commits('tests/fixtures/pic-folder')
 
 def test_check_for_multiple_commits_no_commits():
     result = check_for_multiple_commits('tests/fixtures/test-git-repo')
