@@ -18,6 +18,9 @@ setup(
     name='open-project-linter',
     version='0.3dev',
     packages=find_packages(),
+    package_data={
+        'openlinter': ['*.yml'],
+    },
     install_requires=['gitpython', 'pyyaml'],
     license='Apache v2.0',
     description='Automatic checklist for open source project best practices.',

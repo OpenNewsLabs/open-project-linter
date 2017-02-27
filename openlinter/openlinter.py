@@ -10,26 +10,36 @@ See https://github.com/OpenNewsLabs/open-project-linter/issues/21 .
 from __future__ import absolute_import
 
 import argparse
+import inspect
 import os
+
 import yaml
 
 import openlinter.rules as rules
 
-# FIXME: this is all not very functional or testable.
-def main():
-    # Set up parser and CLI
+
+def get_current_script_dir():
+    module_location = os.path.abspath(inspect.stack()[0][1])
+    return os.path.dirname(module_location)
+
+
+def parse_linter_args():
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group()
-#    group.add_argument('-u', '--url',
-#        help='The URL to the GitHub repository to check. Defaults to None.')
     group.add_argument('-d', '--directory', help="The local path to your repository's base directory. Defaults to the current working directory.",
        default=os.getcwd()
     )
     parser.add_argument('-r', '--rules', help='The path to the rules configuration file, a YAML file containing the rules you would like to check for. Defaults to current-working-directory/openlinter/rules.yml.',
-        default=os.path.join(os.getcwd(), 'openlinter/rules.yml')
+        default=os.path.join(get_current_script_dir(), 'rules.yml')
     )
     parser.add_argument('-v', '--version', action='version', version='0.3dev')
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+# FIXME: this is all not very functional or testable.
+def main():
+    # Set up parser and CLI
+    args = parse_linter_args()
 
     # Read in rules
     with open(args.rules, 'r') as f:
