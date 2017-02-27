@@ -16,9 +16,12 @@ with(open(path.join(here, 'README.md'), encoding='utf-8')) as f:
 
 setup(
     name='open-project-linter',
-    version='0.3dev',
+    version='0.4dev',
     packages=find_packages(),
-    install_requires=['gitpython', 'pyyaml'],
+    package_data={
+        'openlinter': ['*.yml'],
+    },
+    install_requires=['gitpython', 'pyyaml', 'pygments'],
     license='Apache v2.0',
     description='Automatic checklist for open source project best practices.',
     long_description=long_description,
