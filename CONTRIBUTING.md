@@ -15,3 +15,17 @@ information.
 
 ## Status and plans
 See `ROADMAP.md` for more information.
+
+## Specific guidelines
+### Adding rules to the linter
+To add rules, you will need to:
+* add one or more entries to the configuration file (`rules.yml`) so that
+  users can to turn the check on or off
+* make sure that the rule is called from and output is generated for the body
+  of the linter (in `openlinter.py`)
+* add one or more functions to `rules.py` to actually run the check
+
+### Adding options to the command-line interface
+You may also want to add new options to the command-line interface. This uses
+argparse: [argparse docs](https://docs.python.org/3.4/library/argparse.html),
+[argparse tutorial](https://docs.python.org/3.4/howto/argparse.html).

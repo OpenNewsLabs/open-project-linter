@@ -28,7 +28,7 @@ def main():
     parser.add_argument('-r', '--rules', help='The path to the rules configuration file, a YAML file containing the rules you would like to check for. Defaults to current-working-directory/openlinter/rules.yml.',
         default=os.path.join(os.getcwd(), 'openlinter/rules.yml')
     )
-    parser.add_argument('-v', '--version', action='version', version='0.2dev')
+    parser.add_argument('-v', '--version', action='version', version='0.3dev')
     args = parser.parse_args()
 
     # Read in rules
@@ -117,7 +117,9 @@ def main():
     else:
         pass
 
-    # TODO: can add future checks, also needs refactoring
+    # Can add more features to check for in here
+    # TODO: Could really use refactoring to handle results + output strings
+    #       better, and could pull individual conditionals out into functions
 
 
 if __name__ == '__main__':

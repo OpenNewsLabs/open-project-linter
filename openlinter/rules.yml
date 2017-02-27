@@ -1,27 +1,30 @@
-# Config file for linter rules
-# Comment out what you don't want to run
+# Configuration file for Open Project Linter.
+# Lines that start with # are comments. Comment out lines that you
+# don't want to be checked for.
 
-# Documentation present
+# Check whether these types of documentation files exist
 files_exist:
-# type of file: string to match on
+# type of file: allowed names for the file
 - license: [LICENSE, COPYING]
 - readme: [README]
 - contributing: [CONTRIBUTING]
 
+# Code exists in the repository: set True to check, False to ignore
 code_exists: True
 
-# Version control exists and should be checked
+# Check whether version control (git) exists and how it is being used
 version_control:
+# Detect whether there is a version control system:
 - detect_vcs
-- detect_git_branches
-- multiple_git_commits
-#- gpg_signed_commits
 
-# Acceptable names for a development branch
+# Detect whether the repository has multiple branches
+- detect_git_branches
+
+# Detect whether the repository has multiple commits on a branch
+- multiple_git_commits
+
+# Check whether a develop branch exists and whether it has any of these names
 dev_branch_names:
 - develop
 - feature
 
-#misc:
-#- code sanitization
-#- offensive language

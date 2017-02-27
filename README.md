@@ -34,6 +34,20 @@ $ openlinter -d path/to/repository/
 
 For more help, run `$ openlinter --help`.
 
+####Using configuration files
+Open Project Linter is configurable, so that you can decide what project
+features you want to check for and what file names you want to make sure
+exist. The default configuration file is located at
+`path/to/openlinter/rules.yml`.
+
+You can also use the `-r` flag to specify where your desired configuration file
+is, like so:
+```
+$ openlinter -r path/to/rules.yml -d path/to/repository/
+```
+to use the file located at `path/to/rules.yml` to check the repository at
+`path/to/repository/`.
+
 ## Contributing
 ###How to set up the dev environment
 To set this up for development, fork this repository, then clone it to
@@ -44,6 +58,9 @@ repository, file a pull request to get your contribution into the main
 repository.
 
 ##Changelog
+###version 0.3dev
+* Improve documentation
+* Fix accidental return value change in file content checker
 ###version 0.2dev
 * Add automated tests
 * Fix path bug in file content checker
