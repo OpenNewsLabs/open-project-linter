@@ -21,7 +21,7 @@ setup(
     package_data={
         'openlinter': ['*.yml'],
     },
-    install_requires=['gitpython', 'pyyaml'],
+    install_requires=['gitpython', 'pyyaml', 'pygments'],
     license='Apache v2.0',
     description='Automatic checklist for open source project best practices.',
     long_description=long_description,
