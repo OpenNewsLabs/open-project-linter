@@ -76,14 +76,10 @@ def check_file_presence(keyword, directory):
     # TODO: minor refactoring, this should be a separate check than
     # the check for file content, should not return True/None/False
     files = os.listdir(directory)
-    # this is unfortunately nested, FIXME?
-    for f in files:
-        if os.path.isfile(os.path.join(directory, f)):
-            # in case there's anything in the path that matches keyword,
-            # only match the filename
-            filename = os.path.split(f)[1]
+    for filename in files:
+        if os.path.isfile(os.path.join(directory, filename)):
             if keyword in filename:
-                if check_for_file_content(os.path.join(directory,f)):
+                if check_for_file_content(os.path.join(directory,filename)):
                     return True
                 else:
                     return None
