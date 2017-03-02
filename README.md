@@ -9,6 +9,8 @@ The project started as a way to automate
 [this checklist for newsroom developers](https://docs.google.com/document/d/1kTtHAgzlyteODMia1JmIGbKkjGugxKMZfxoWEGdku_Q/edit#),
 but these are good practices for most open source projects!
 
+This is written in and supported on Python 3.
+
 ##Getting Started
 ###Installation
 It is recommended that you use a virtual environment in order to avoid
