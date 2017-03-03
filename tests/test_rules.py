@@ -10,6 +10,42 @@ import git
 
 from openlinter.rules import *
 
+
+# Test fixtures
+
+@pytest.fixture()
+def setup_empty_repo(tmpdir):
+    # tmpdir is a LocalPath, git chokes unless you cast to str
+    git.Repo.init(str(tmpdir))
+
+@pytest.fixture()
+def setup_repo_one_br_one_commit(tmpdir):
+    repo = git.Repo.init(str(tmpdir))
+    # Make temporary file for the temporary repo
+    with open(str(tmpdir.join('test_file.txt')), 'w') as f:
+        f.write('This is a file with text.\n')
+    repo.index.add([str(tmpdir.join('test_file.txt'))])
+    repo.index.commit('initial commit')
+
+@pytest.fixture()
+def setup_repo_two_br_two_commits(tmpdir):
+    repo = git.Repo.init(str(tmpdir))
+    # Make first temporary file and commit it
+    with open(str(tmpdir.join('test_file.txt')), 'w') as f:
+        f.write('This is a file with text.\n')
+    repo.index.add([str(tmpdir.join('test_file.txt'))])
+    repo.index.commit('initial commit')
+
+    # Make second temporary file and commit it
+    with open(str(tmpdir.join('test_file2.txt')), 'w') as f:
+        f.write('This is a second file with text.\n')
+    repo.index.add([str(tmpdir.join('test_file2.txt'))])
+    repo.index.commit('second commit')
+
+    # Make the dev branch
+    new_branch = repo.create_head('develop')
+
+
 # Tests for openlinter.rules.check_file_presence()
 
 def test_check_file_presence_nonexistent_file():
@@ -67,8 +103,8 @@ def test_get_file_text_file_exists_has_text():
 
 # Tests for openlinter.rules.detect_version_control()
 
-def test_detect_version_control_repository_exists():
-    result = detect_version_control('tests/fixtures/test-git-repo')
+def test_detect_version_control_repository_exists(setup_empty_repo, tmpdir):
+    result = detect_version_control(str(tmpdir))
     assert result == 'git'
 
 def test_detect_version_control_folder_does_not_exist():
@@ -81,29 +117,29 @@ def test_detect_version_control_folder_has_no_vc():
 
 # Tests for openlinter.rules.check_multiple_branches()
 
-def test_check_multiple_branches_empty_repo():
-    assert check_multiple_branches('tests/fixtures/test-git-repo') == False
+def test_check_multiple_branches_empty_repo(setup_empty_repo, tmpdir):
+    assert check_multiple_branches(str(tmpdir)) == False
 
 def test_check_multiple_branches_nonexistent_repo():
     with pytest.raises(git.InvalidGitRepositoryError):
         check_multiple_branches('tests/fixtures/pic-folder')
 
-def test_check_multiple_branches_nonexistent_repo():
+def test_check_multiple_branches_nonexistent_folder():
     with pytest.raises(git.NoSuchPathError):
         check_multiple_branches('zzyzx')
 
-def test_check_multiple_branches_repo_with_one_branch():
-    result = check_multiple_branches('tests/fixtures/git-repo-one-branch')
+def test_check_multiple_branches_repo_one_branch(setup_repo_one_br_one_commit, tmpdir):
+    result = check_multiple_branches(str(tmpdir))
     assert result == False
 
-def test_check_multiple_branches_repo_with_two_branches():
-    result = check_multiple_branches('tests/fixtures/git-repo-dev-branch')
+def test_check_multiple_branches_repo_with_two_branches(setup_repo_two_br_two_commits, tmpdir):
+    result = check_multiple_branches(str(tmpdir))
     assert result == True
 
 
 # Tests for openlinter.rules.check_for_develop_branch()
 
-def test_check_for_develop_branch_nonexistent_repo():
+def test_check_for_develop_branch_nonexistent_folder():
     with pytest.raises(git.NoSuchPathError):
         check_for_develop_branch('zzyzx', 'dev')
 
@@ -111,19 +147,19 @@ def test_check_for_develop_branch_nonexistent_repo():
     with pytest.raises(git.InvalidGitRepositoryError):
         check_for_develop_branch('tests/fixtures/pic-folder', 'dev')
 
-def test_check_for_develop_branch_repo_without_dev_branch():
-    result = check_for_develop_branch('tests/fixtures/test-git-repo', 'dev')
+def test_check_for_develop_branch_repo_without_dev_branch(setup_empty_repo, tmpdir):
+    result = check_for_develop_branch(str(tmpdir), 'develop')
     assert result == False
 
-def test_check_for_develop_branch_repo_has_dev_branch():
-    result = check_for_develop_branch('tests/fixtures/git-repo-dev-branch',
+def test_check_for_develop_branch_repo_has_dev_branch(setup_repo_two_br_two_commits, tmpdir):
+    result = check_for_develop_branch(str(tmpdir),
        'develop')
     assert result == True
 
 
 # Tests for openlinter.rules.check_for_multiple_commits()
 
-def test_check_for_multiple_commits_nonexistent_repo():
+def test_check_for_multiple_commits_nonexistent_folder():
     with pytest.raises(git.NoSuchPathError):
         check_for_multiple_commits('zzyzx')
 
@@ -131,14 +167,14 @@ def test_check_for_multiple_commits_nonexistent_repo():
     with pytest.raises(git.InvalidGitRepositoryError):
         check_for_multiple_commits('tests/fixtures/pic-folder')
 
-def test_check_for_multiple_commits_no_commits():
-    result = check_for_multiple_commits('tests/fixtures/test-git-repo')
+def test_check_for_multiple_commits_no_commits(setup_empty_repo, tmpdir):
+    result = check_for_multiple_commits(str(tmpdir))
     assert result is False
 
-def test_check_for_multiple_commits_one_commit():
-    result = check_for_multiple_commits('tests/fixtures/git-repo-one-branch')
+def test_check_for_multiple_commits_one_commit(setup_repo_one_br_one_commit, tmpdir):
+    result = check_for_multiple_commits(str(tmpdir))
     assert result == False
 
-def test_check_for_multiple_commits_two_commits():
-    result = check_for_multiple_commits('tests/fixtures/git-repo-dev-branch')
+def test_check_for_multiple_commits_two_commits(setup_repo_two_br_two_commits, tmpdir):
+    result = check_for_multiple_commits(str(tmpdir))
     assert result == True
