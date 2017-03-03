@@ -60,6 +60,13 @@ repository, file a pull request to get your contribution into the main
 repository.
 
 ##Changelog
+###version 1.0
+* Update `ROADMAP.md` with pre-NICAR status
+* Fix the KeyError issue when default config was changed ([#27](https://github.com/OpenNewsLabs/open-project-linter/issues/27))
+* Split some of the main linter logic out into functions and improve module
+  documentation
+* Add test fixtures for the git-related tests ([#22](https://github.com/OpenNewsLabs/open-project-linter/issues/22))
+
 ###version 0.4dev
 * Now installs Pygments automatically when installed with pip, with or
   without pulling versions from `requirements.txt`

@@ -140,7 +140,7 @@ def parse_linter_args():
     parser.add_argument('-r', '--rules', help='The path to the rules configuration file, a YAML file containing the rules you would like to check for. Defaults to path/to/openlinter/rules.yml.',
         default=os.path.join(get_current_script_dir(), 'rules.yml')
     )
-    parser.add_argument('-v', '--version', action='version', version='0.4dev')
+    parser.add_argument('-v', '--version', action='version', version='1.0')
     return parser.parse_args()
 
 
