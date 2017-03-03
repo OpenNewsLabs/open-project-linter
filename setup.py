@@ -16,7 +16,7 @@ with(open(path.join(here, 'README.md'), encoding='utf-8')) as f:
 
 setup(
     name='open-project-linter',
-    version='0.4dev',
+    version='1.0',
     packages=find_packages(),
     package_data={
         'openlinter': ['*.yml'],

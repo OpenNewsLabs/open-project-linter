@@ -15,43 +15,55 @@ want to volunteer to contribute, comment on an issue you're interested in and
 ping @brainwane.
 
 ## Milestones
-Version 1.0 of this tool is due to be finished in mid-February, so that it can
-be tested ahead of being recommended and promoted at [NICAR](https://www.ire.org/conferences/nicar2017/).
+Version 1.0 of this tool will be recommended and promoted at
+[NICAR](https://www.ire.org/conferences/nicar2017/).
+
 ### Short-term
-These will be finished by 16 Feb 2017.
-
-Currently in progress:
-* Write a README documenting package purpose, installation, and usage.
-* Write tests for currently available functionality, beginning with
-  rules
-* Package the application so it is installable through pip; keep `requirements.txt`
-  up to date. (#1)
-* Publish project on PyPI (#2)
-
-Not currently in progress:
-* Refactor to add results to a result object as checks are run instead of only
-  printing to stdout.
-* Implement code detection (is code in the repository?) (#9)
+* Fix any bugs that come up during NICAR
 
 ### Medium-term
-These could be worked on now, but are not in progress. They may or may not be
-finished by 15 Feb 2017.
+These are the highest-priority additions and improvements.
 
-* Improve the message text for help and other interface messages
-* Ensure that interface messages are stored together and are easy to find
-  and modify 
+#### Features
 * Add functionality/rules to check for secrets, passwords, keys, and personally
-  identifiable information (#17)
+  identifiable information ([#17](https://github.com/OpenNewsLabs/open-project-linter/issues/17))
 * Add functionality/rules to check for offensive words in code, comments, and
-  documentation (#18)
-* Add functionality/rules to check whether a git commit is signed with GPG (#19)
-* Add functionality/rules to check whether a package is signed with GPG (#20)
+  documentation ([#18](https://github.com/OpenNewsLabs/open-project-linter/issues/18))
+* Add functionality/rules to check whether a git commit is signed with GPG ([#19](https://github.com/OpenNewsLabs/open-project-linter/issues/19))
+* Add functionality/rules to check whether a package is signed with GPG ([#20](https://github.com/OpenNewsLabs/open-project-linter/issues/20))
 
-### Long-term
-These are components that could be added in the future, but are not part of
-current development efforts. They involve inessential improvements or more
-involved work.
-* Add the ability to check a repository via the Github URL (#6)
-* Add the ability to check that a Github project is using milestones (#16)
+#### Code Improvements
+* Refactor to add results to a result object as checks are run instead of only
+  printing to stdout
+* Ensure that interface messages are stored together and are easy to find
+  and modify
+
+### Ideas for the future
+Future maintainers and community should decide what their priorities are,
+but here are some possible improvements. These are components that could be
+added in the future, but are not part of current development efforts. They
+involve inessential improvements or more involved work.
+
+#### Features
+* Add the ability to check a repository via the Github URL ([#6](https://github.com/OpenNewsLabs/open-project-linter/issues/6))
+* Add the ability to check that a Github project is using milestones ([#16](https://github.com/OpenNewsLabs/open-project-linter/issues/16))
 * Automated license detection
+
+#### Interface improvements
+* Improve console string formatting
+* Consider which options belong in the config file vs. the command-line
+  interface
+* Improve the message text for help and other interface messages
+* Add a verbosity option (e.g. show all output vs. show only errors)
 * Save the results to a file instead of only printing in the terminal
+
+#### Code improvements/technical debt
+* Improve automated test coverage
+* Make compatible with Python 2.7
+* Make compatible with Windows
+* Use path/Path functions for all filepath manipulations (not just strings)
+* As the number of rules grows, split functions out into separate submodules
+* As the number of automated tests grows, split them into files containing
+  similar tests
+* Consider separating functions that support rules/linter implementation (that
+  do not implement the main logic) into a utils submodule

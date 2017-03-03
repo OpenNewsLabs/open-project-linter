@@ -9,6 +9,8 @@ The project started as a way to automate
 [this checklist for newsroom developers](https://docs.google.com/document/d/1kTtHAgzlyteODMia1JmIGbKkjGugxKMZfxoWEGdku_Q/edit#),
 but these are good practices for most open source projects!
 
+This is written in and supported on Python 3.
+
 ##Getting Started
 ###Installation
 It is recommended that you use a virtual environment in order to avoid
@@ -63,6 +65,13 @@ repository, file a pull request to get your contribution into the main
 repository.
 
 ##Changelog
+###version 1.0
+* Update `ROADMAP.md` with pre-NICAR status
+* Fix the KeyError issue when default config was changed ([#27](https://github.com/OpenNewsLabs/open-project-linter/issues/27))
+* Split some of the main linter logic out into functions and improve module
+  documentation
+* Add test fixtures for the git-related tests ([#22](https://github.com/OpenNewsLabs/open-project-linter/issues/22))
+
 ###version 0.4dev
 * Now installs Pygments automatically when installed with pip, with or
   without pulling versions from `requirements.txt`
