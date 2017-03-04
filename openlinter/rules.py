@@ -288,8 +288,9 @@ def check_for_multiple_commits(repository):
     branches = repo.branches
     multiple_commits = False
     for branch in branches:
-        commit_log = [x for x in branch.log() if 'commit' in x.message]
-        if len(commit_log) > 1:
+        # Number of commits accessible from branch head
+        count = branch.commit.count()
+        if count > 1:
             multiple_commits = True
     return multiple_commits
 
