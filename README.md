@@ -57,6 +57,10 @@ repository, file a pull request to get your contribution into the main
 repository.
 
 ##Changelog
+###version 1.0.1
+* Fix the error in checking for multiple commits where it was using the reflog
+  not the commit history ([#30](https://github.com/OpenNewsLabs/open-project-linter/issues/30))
+
 ###version 1.0
 * Update `ROADMAP.md` with pre-NICAR status
 * Fix the KeyError issue when default config was changed ([#27](https://github.com/OpenNewsLabs/open-project-linter/issues/27))
