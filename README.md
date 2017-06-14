@@ -1,6 +1,6 @@
 # Open Project Linter
 
-##About this project
+## About this project
 The Open Project Linter is an automated checklist that new (or experienced
 but forgetful) open source maintainers can use to make sure that they're
 using good practices in their documentation, code, and project resources.
@@ -11,7 +11,7 @@ but these are good practices for most open source projects!
 
 This is written in and supported on Python 3.
 
-##Getting Started
+## Getting Started
 ###Installation
 It is recommended that you use a virtual environment in order to avoid
 dependency conflicts between projects. For more information,
