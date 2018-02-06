@@ -6,7 +6,7 @@ but forgetful) open source maintainers can use to make sure that they're
 using good practices in their documentation, code, and project resources.
 
 The project started as a way to automate
-[this checklist for newsroom developers](https://docs.google.com/document/d/1kTtHAgzlyteODMia1JmIGbKkjGugxKMZfxoWEGdku_Q/edit#),
+[this checklist for newsroom developers](https://source.opennews.org/articles/introducing-field-guide-open-source-newsroom/),
 but these are good practices for most open source projects!
 
 This is written in and supported on Python 3.
